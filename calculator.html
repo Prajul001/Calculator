@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+        <div class="calc-text">
+            <p name="user-input" id="inputBox">0</p>
+            <!-- <p id="inputBox" placeholder="0" ></p> -->
+        </div>
+        <div class="calc-keys">
+            <button>AC</button>
+            <button>DEL</button>
+            <button>%</button>
+            <button>/</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>*</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>+</button>
+            <button class="key-zero numbers">0</button>
+            <button class="numbers">.</button>
+            <button class="key-operate operations">=</button>
+        </div>
+    </div>
+  </body>
+  <script>
+    let input = document.getElementById('inputBox');
+    let buttons = document.querySelectorAll('button');
+
+    let string = "";
+    let arr = Array.from(buttons);
+
+    arr.forEach(button => {
+        button.addEventListener('click', (e) => {
+            if (e.target.innerHTML === '=') {
+                try {
+                    string = eval(string);
+                    input.textContent = string;
+                } catch {
+                    input.textContent = "Error";
+                }
+            } else if (e.target.innerHTML === 'AC') {
+                string = "";
+                input.textContent = string;
+            } else if (e.target.innerHTML === 'DEL') {
+                string = string.substring(0, string.length - 1);
+                input.textContent = string;
+            } else {
+                string += e.target.innerHTML;
+                input.textContent = string;
+            }
+        });
+    });
+</script>
+
+
+
+
+  <!-- <script src="script.js"></script> -->
+</html>
